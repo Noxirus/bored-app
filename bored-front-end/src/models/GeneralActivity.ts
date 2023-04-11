@@ -1,3 +1,4 @@
+import GeneralActivityComponent from '../components/GeneralActivityComponent';
 import Activity from './Activity';
 import { Tags } from './Tags';
 
@@ -9,7 +10,7 @@ class GeneralActivity implements Activity {
     ){}
     
     render(): JSX.Element {
-        throw new Error('Method not implemented.');
+        return GeneralActivityComponent(this);
     }
 }
 

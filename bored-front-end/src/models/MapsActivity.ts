@@ -1,3 +1,4 @@
+import MapsActivityComponent from '../components/MapsActivityComponent';
 import Activity from './Activity';
 import { Tags } from './Tags';
 
@@ -9,8 +10,8 @@ class MapsActivity implements Activity {
         public mapsKeyword: string
     ){}
     
-    render(): JSX.Element {
-        throw new Error('Method not implemented.');
+    public render(): JSX.Element {
+        return MapsActivityComponent(this);
     }
 }
 

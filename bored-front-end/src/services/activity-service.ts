@@ -4,7 +4,8 @@ import { Tags } from "../models/Tags";
 
 class ActivityService {
     public FindActivity(filteredTags?: Tags[]): Activity{
-        return activityDB[0];
+        let randomChoice: number = Math.floor(Math.random() * activityDB.length);
+        return activityDB[randomChoice];
     }
 }
 

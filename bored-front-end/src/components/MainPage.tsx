@@ -8,14 +8,17 @@ function MainPage(): JSX.Element {
 
     function FindActivity(){
         let chosenActivity: Activity = activityService.FindActivity();
-
         setActivity(chosenActivity);
     }
 
     return (
         <div>
-            <h1>I am bored!</h1>
-            <Button>Give me something to do...?</Button>
+            {currentActivity && currentActivity.render()}
+            {!currentActivity && <div>
+                <h1>I am bored!</h1>
+                <Button onClick={() => FindActivity()}>Give me something to do...?</Button>
+            </div>}
+
         </div>
     );
 }
