@@ -1,4 +1,4 @@
-import GeneralActivity from '../models/GeneralActivity';
+import GeneralActivity from '../models/activities/GeneralActivity';
 
 function GeneralActivityComponent(props: GeneralActivity) {
     return (

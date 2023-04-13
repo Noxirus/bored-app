@@ -1,4 +1,4 @@
-import MapsActivity from '../models/MapsActivity';
+import MapsActivity from '../models/activities/MapsActivity';
 
 function MapsActivityComponent(props: MapsActivity) {
     return (

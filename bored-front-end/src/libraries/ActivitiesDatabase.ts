@@ -1,6 +1,6 @@
-import Activity from "../models/Activity";
-import MapsActivity from "../models/MapsActivity";
-import GeneralActivity from "../models/GeneralActivity";
+import Activity from "../models/activities/Activity";
+import MapsActivity from "../models/activities/MapsActivity";
+import GeneralActivity from "../models/activities/GeneralActivity";
 import { Tags } from "../models/Tags";
 
 //NOTE: This is a placeholder DB for Development purposes

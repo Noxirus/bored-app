@@ -1,6 +1,6 @@
-import GeneralActivityComponent from '../components/GeneralActivityComponent';
+import GeneralActivityComponent from '../../components/GeneralActivityComponent';
 import Activity from './Activity';
-import { Tags } from './Tags';
+import { Tags } from '../Tags';
 
 class GeneralActivity implements Activity {
     constructor(

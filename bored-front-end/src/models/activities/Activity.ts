@@ -1,4 +1,4 @@
-import { Tags } from "./Tags";
+import { Tags } from "../Tags";
 
 
 export default interface Activity {
@@ -7,5 +7,4 @@ export default interface Activity {
     tags: Tags[],
 
     render(): JSX.Element;
-    
 }

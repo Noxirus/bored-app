@@ -1,5 +1,5 @@
 import { activityDB } from "../libraries/ActivitiesDatabase";
-import Activity from "../models/Activity";
+import Activity from "../models/activities/Activity";
 import { Tags } from "../models/Tags";
 
 class ActivityService {

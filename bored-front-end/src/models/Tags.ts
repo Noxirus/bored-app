@@ -1,4 +1,4 @@
-export const enum Tags {
+export enum Tags {
     Exercise,
     Dexterity,
     Logic,

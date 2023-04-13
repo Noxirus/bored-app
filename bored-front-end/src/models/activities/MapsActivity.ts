@@ -1,6 +1,6 @@
-import MapsActivityComponent from '../components/MapsActivityComponent';
+import MapsActivityComponent from '../../components/MapsActivityComponent';
 import Activity from './Activity';
-import { Tags } from './Tags';
+import { Tags } from '../Tags';
 
 class MapsActivity implements Activity {
     constructor(
