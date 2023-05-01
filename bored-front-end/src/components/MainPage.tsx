@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Button, Container, Row, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Button, Container, Row, Form } from 'reactstrap';
 import Activity from '../models/activities/Activity';
 import activityService from '../services/activity-service';
 import styled from 'styled-components';
 import { Tags } from '../models/Tags';
+import { DisplayTags } from '../models/Tags';
 
 const MainPage: React.FC = () => {
     const [currentActivity, setActivity] = useState<Activity | null>(null);
@@ -14,46 +15,36 @@ const MainPage: React.FC = () => {
         setActivity(chosenActivity);
     }
 
-    function DisplayListElement(tag: string): JSX.Element | null {
-        const tagValue = Tags[tag as keyof typeof Tags];
-        if(typeof tagValue !== 'string'){
-            return <FormGroup check key={tag} inline>
-                <Label check>
-                    <Input
-                        type="checkbox"
-                        name="tags"
-                        checked={checkedTags.includes(tag)}
-                        onChange={() => handleCheckboxChange(tag)} />
-                    {tag}
-                </Label>
-            </FormGroup>
-        }
-
-        return null;
+    function BackToMainPage(){
+        setActivity(null);
     }
 
-    const handleCheckboxChange = (tag: string) => {
-        console.log("Checked: " + tag)
-        if (checkedTags.includes(tag)) {
-          setCheckedTags(checkedTags.filter(item => item !== tag));
-        } else {
-          setCheckedTags([...checkedTags, tag]);
-        }
-      };
+    function FindActivitySection(){
+        return currentActivity && 
+        <div> 
+            {currentActivity.render()}
+            <Button onClick={() => BackToMainPage()}>Go back</Button>
+        </div>
+    }
+
+    function ActivitySection(){
+        return !currentActivity && 
+        <div>
+            <h1>I am bored!</h1>
+            <Button onClick={() => FindActivity()}>Give me something to do...?</Button>
+            <br /><br />
+            <Form>
+                {Object.keys(Tags).map(tag => DisplayTags(tag, checkedTags, setCheckedTags))}
+            </Form>
+        </div>
+    }
 
     return (
         <MainPageContainer>
-            <Row>
-                {currentActivity && currentActivity.render()}
-                {!currentActivity && <div>
-                    <h1>I am bored!</h1>
-                    <Button onClick={() => FindActivity()}>Give me something to do...?</Button>
-                    <Form>
-                        {Object.keys(Tags).map(tag => DisplayListElement(tag))}
-                    </Form>
-
-                </div>}
-            </Row>
+            <StyledRow>
+                {FindActivitySection()}
+                {ActivitySection()}        
+            </StyledRow>
         </MainPageContainer>
     );
 }
@@ -61,6 +52,17 @@ const MainPage: React.FC = () => {
 export default MainPage;
 
 const MainPageContainer = styled(Container)`
-text-align: center;
-bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    text-align: center;
+`
+
+const StyledRow = styled(Row)`
+    border-width: 2px;
+    border-style: solid;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 10px 10px lightblue;
 `
