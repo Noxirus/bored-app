@@ -1,6 +1,6 @@
 import MapsActivity from '../models/activities/MapsActivity';
 
-function MapsActivityComponent(props: MapsActivity) {
+function MapsActivityComponent(props: MapsActivity): JSX.Element {
     return (
         <div>
             <h1>{props.name}</h1>

@@ -8,25 +8,10 @@ import { DisplayTags } from '../models/Tags';
 
 const MainPage: React.FC = () => {
     const [currentActivity, setActivity] = useState<Activity | null>(null);
-    const [checkedTags, setCheckedTags] = useState<string[]>([]);
+    const [checkedTags, setCheckedTags] = useState<Tags[]>([]); //Maybe look into state more? Tags should belong in the tags section
+    //But I need to consider state here
 
-    function FindActivity(){
-        let chosenActivity: Activity = activityService.FindActivity();
-        setActivity(chosenActivity);
-    }
-
-    function BackToMainPage(){
-        setActivity(null);
-    }
-
-    function FindActivitySection(){
-        return currentActivity && 
-        <div> 
-            {currentActivity.render()}
-            <Button onClick={() => BackToMainPage()}>Go back</Button>
-        </div>
-    }
-
+    //These should likely be their own components
     function ActivitySection(){
         return !currentActivity && 
         <div>
@@ -34,9 +19,26 @@ const MainPage: React.FC = () => {
             <Button onClick={() => FindActivity()}>Give me something to do...?</Button>
             <br /><br />
             <Form>
-                {Object.keys(Tags).map(tag => DisplayTags(tag, checkedTags, setCheckedTags))}
+                {Object.keys(Tags).map(tag => DisplayTags(tag as unknown as Tags, checkedTags, setCheckedTags))}
             </Form>
         </div>
+    }
+
+    function FindActivity(){
+        let chosenActivity: Activity = activityService.FindActivity(checkedTags);
+        setActivity(chosenActivity);
+    }
+  
+    function FindActivitySection(){
+        return currentActivity && 
+        <div> 
+            {currentActivity.render()}
+            <Button onClick={() => BackToMainPage()}>Go back</Button>
+        </div>
+    }
+    
+    function BackToMainPage(){
+        setActivity(null);
     }
 
     return (

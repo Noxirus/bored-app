@@ -10,9 +10,10 @@ export enum Tags {
 }
 
 
-export function DisplayTags(tag: string, checkedTags: string[], setCheckedTags: (arg1: string[]) => void): JSX.Element | null {
-    const tagValue = Tags[tag as keyof typeof Tags]
-    if(typeof tagValue !== 'string'){
+export function DisplayTags(tag: Tags, checkedTags: Tags[], setCheckedTags: (arg1: Tags[]) => void): JSX.Element | null {
+    const tagAsNumber = parseInt(tag as unknown as string, 10);
+    if(!isNaN(tagAsNumber)) return null;
+        
         return <FormGroup check key={tag} inline>
             <Label check>
                 <Input
@@ -23,12 +24,9 @@ export function DisplayTags(tag: string, checkedTags: string[], setCheckedTags: 
                 {tag}
             </Label>
         </FormGroup>
-    }
-
-    return null;
 }
 
-const handleCheckboxChange = (tag: string, checkedTags: string[], setCheckedTags: (arg1: string[]) => void) => {
+const handleCheckboxChange = (tag: Tags, checkedTags: Tags[], setCheckedTags: (arg1: Tags[]) => void) => {
     if (checkedTags.includes(tag)) {
       setCheckedTags(checkedTags.filter(item => item !== tag));
     } else {
